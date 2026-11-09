@@ -22,8 +22,8 @@ public:
 
   /**
    Parses only the base view props and keeps the decoded props of `sourceProps`. React Native uses it
-   to collect the keys of the base view props (`RawPropsParser::prepare`).
-   `NewComponentDescriptor` uses the constructor that takes the decoded props.
+   to collect the keys of the base view props (`RawPropsParser::prepare`). `NewComponentDescriptor`
+   copies the source props instead and sets the props of the update with `setProp`.
    */
   NewViewProps(
     const facebook::react::PropsParserContext &context,
@@ -31,17 +31,12 @@ public:
     const facebook::react::RawProps &rawProps
   );
 
-  NewViewProps(
-    const facebook::react::PropsParserContext &context,
-    const NewViewProps &sourceProps,
-    const facebook::react::RawProps &rawProps,
-    DecodedProps decodedProps
-  );
-
   /**
    The view's own props, or `nullptr` when nothing was decoded yet and all props have their defaults.
+   Not `const`, so `NewComponentDescriptor` can set it on a copy of the source props. It's written only
+   before the props are shared.
    */
-  const DecodedProps decodedProps;
+  DecodedProps decodedProps;
 };
 
 } // namespace expo::views
