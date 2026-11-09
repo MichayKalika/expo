@@ -1,5 +1,14 @@
 # Changelog
 
+## 58.0.18
+
+### Patch Changes
+
+- [Internal] [iOS] Add a single description of the precompiled xcframework artifact layout, located per package version, so the producer, the CocoaPods integrator and the artifact cache can stop each encoding their own copy. ([#53214](https://github.com/expo/expo/pull/53214) by [@chrfalch](https://github.com/chrfalch))
+- [iOS] Fix the `ExpoModulesCore` checksum in `Podfile.lock` changing with the project path when precompiled modules are on. `pod install --deployment` now passes with a lockfile from another machine. ([#50207](https://github.com/expo/expo/pull/50207) by [@cristunaranjo](https://github.com/cristunaranjo))
+- Updated dependencies. ([#52831](https://github.com/expo/expo/pull/52831))
+  - @expo/require-utils@58.0.6
+
 ## 58.0.17
 
 ### Patch Changes
